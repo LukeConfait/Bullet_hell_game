@@ -16,4 +16,4 @@ To activate the virtual environment, run:
 
 or
 
-    .direnv\Scripts\activateon Windows
+    .direnv\Scripts\activate on Windows
