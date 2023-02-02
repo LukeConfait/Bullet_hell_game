@@ -12,4 +12,8 @@ To create a virtual environment, run:
 
 To activate the virtual environment, run:
 
-    source .direnv/bin/activate
+    source .direnv/bin/activate on Unix or MacOS
+
+or
+
+    .direnv\Scripts\activateon Windows
