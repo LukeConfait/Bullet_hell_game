@@ -17,3 +17,7 @@ To activate the virtual environment, run:
 or
 
     .direnv\Scripts\activate on Windows
+
+install the required packages using 
+
+    py -m pip install -r requirements.txt
