@@ -10,6 +10,9 @@ import config
 
 
 class Player(pygame.sprite.Sprite):
+    """
+    Player entity class
+    """
     def __init__(self):
         super(Player, self).__init__()
         self.surf = pygame.Surface((5, 5))
@@ -21,17 +24,17 @@ class Player(pygame.sprite.Sprite):
             )
         )
 
-    def update(self, pressed_keys):
+    def update(self, key):
         speed = 6
-        if pressed_keys[K_LSHIFT]:
+        if key[K_LSHIFT]:
             speed = 2
-        if pressed_keys[K_UP]:
+        if key[K_UP]:
             self.rect.move_ip(0, -speed)
-        if pressed_keys[K_DOWN]:
+        if key[K_DOWN]:
             self.rect.move_ip(0, speed)
-        if pressed_keys[K_LEFT]:
+        if key[K_LEFT]:
             self.rect.move_ip(-speed, 0)
-        if pressed_keys[K_RIGHT]:
+        if key[K_RIGHT]:
             self.rect.move_ip(speed, 0)
 
         if self.rect.left < 30:
