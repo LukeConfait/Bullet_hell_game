@@ -63,7 +63,7 @@ class MainMenu(States):
 
     def update(self, screen) -> None:
         """
-        Logic
+        Menu Logic
         """
         self.draw(screen)
     
@@ -102,6 +102,7 @@ class Game(States):
         self.name = 'game'
         self.fps = 60
 
+
     def cleanup(self) -> None:
         """
         Cleans up the game state
@@ -113,11 +114,17 @@ class Game(States):
         Initialises the game state
         """
         print("starting up game state")
+        # Set up play area
         self.play_area = pygame.Surface((config.GAME_WIDTH, config.GAME_HEIGHT))
         self.play_area.fill((255,255,255))
+        # create player and sprite groups
         self.player = Player()
         self.all_sprites = pygame.sprite.Group()
         self.all_sprites.add(self.player)
+        # Create user event for adding bullets and bullet sprite group
+        self.ADDBULLET = pygame.USEREVENT + 1
+        pygame.time.set_timer(self.ADDBULLET, 40)
+        self.bullets = pygame.sprite.Group()
 
     def get_event(self, event) -> None:
         """
@@ -126,69 +133,51 @@ class Game(States):
         if event.type == pygame.KEYDOWN:
             if event.key == K_ESCAPE:
                 print('escape pressed')
+                paused()
             if event.key == K_RETURN:
                 self.done = True
+        if event.type == self.ADDBULLET:
+            new_bullet = Bullet()
+            self.bullets.add(new_bullet)
+            self.all_sprites.add(new_bullet)
         
         pressed_keys = pygame.key.get_pressed()
         self.player.update(pressed_keys)
 
-    
     def update(self, screen) -> None:
+        """
+        Non event loop game logic
+        """
+        self.bullets.update()
+        if pygame.sprite.spritecollideany(self.player, self.bullets):
+            self.player.kill()
+            self.done = True
         self.draw(screen)
 
-    
-    def draw(self, screen):
+    def draw(self, screen) -> None:
+        """
+        Graphics
+        """
         screen.fill((0,0,0))
         screen.blit(self.play_area, (30, 30))
         for entity in self.all_sprites:
             screen.blit(entity.surf, entity.rect)
 
+def paused() -> None :
+    """
+    Pauses the game while in a level 
+    """
+    pause = True
 
-
-# ADDBULLET = pygame.USEREVENT + 1
-# pygame.time.set_timer(ADDBULLET, 40)
-
-# # sprite groups
-# bullets = pygame.sprite.Group()
-# all_sprites = pygame.sprite.Group()
-# all_sprites.add(player)
-
-# running = True
-
-
-#         if event.type == ADDBULLET:
-#             new_bullet = Bullet()
-#             bullets.add(new_bullet)
-#             all_sprites.add(new_bullet)
-
-#     # logic
-#     bullets.update()
-
-#     if pygame.sprite.spritecollideany(player, bullets):
-#         player.kill()
-#         running = False
-
-#     # graphics
-#     screen.fill((0, 0, 0))
-
-
-# def paused() -> None :
-#     """
-#     Pauses the game while in a level 
-#     """
-#     pause = True
-
-#     while pause:
-#         for event in pygame.event.get():
-#             if event.type == KEYDOWN:
-#                 if event.key == K_ESCAPE:
-#                     pause = False
-#             if event.type == pygame.QUIT:
-#                 pygame.quit()
-
-#         pygame.display.update()
-
-
+    while pause:
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    pygame.time.wait(200)
+                    pause = False
+            if event.type == pygame.QUIT:
+                pygame.quit()
+        pygame.display.update()
 
 def main():
     pygame.init()
@@ -212,7 +201,7 @@ def main():
             current_state = state_dict[new_state_name]
             current_state.done = False
             current_state.startup()
-            current_state.previous = previous
+            current_state.previous = str(previous)
         
         while current_state.done == False:
             for event in pygame.event.get():
@@ -227,16 +216,10 @@ def main():
             pygame.display.update()
 
 
-            
-
-    
+    # Cleanup the final game state if needed
     current_state.cleanup()
     pygame.quit()
     sys.exit()
-
-
-
-
 
 if __name__ == "__main__":
     main()

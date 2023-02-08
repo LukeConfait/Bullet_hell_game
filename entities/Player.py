@@ -25,9 +25,12 @@ class Player(pygame.sprite.Sprite):
         )
 
     def update(self, key):
+        """
+        Move the player while not allowing it to leave the gameplay area
+        """
         speed = 6
-        if key[K_LSHIFT]:
-            speed = 2
+        if key[K_LSHIFT]: 
+            speed = 2 # Press Shift to slow down the player
         if key[K_UP]:
             self.rect.move_ip(0, -speed)
         if key[K_DOWN]:
