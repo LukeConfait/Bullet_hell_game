@@ -45,7 +45,6 @@ def main():
             current_state.update(screen)
             pygame.display.update()
 
-
     # Cleanup the final game state if needed
     current_state.cleanup()
     pygame.quit()

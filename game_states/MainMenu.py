@@ -29,6 +29,12 @@ class MainMenu(State):
         """
         self.buttons_index = 0 
         print('starting up menu state')
+
+        self.title_font = pygame.font.SysFont("Verdana", size=32)
+        self.small_font = pygame.font.SysFont("Verdana", size=20)
+
+        self.inactive_text_color = (255, 255, 255)
+        self.active_text_color = (255, 0, 0)
         
     def get_event(self, event) -> None:
         """
@@ -60,35 +66,28 @@ class MainMenu(State):
         """
         Graphics
         """
-
         screen.fill((25, 25, 112))
 
-        title_font = pygame.font.SysFont("Verdana", size=32)
-        small_font = pygame.font.SysFont("Verdana", size=20)
-
-        inactive_text_color = (255, 255, 255)
-        active_text_color = (255, 0, 0)
-
         title_box = pygame.Surface((400, 200))
-        title_text = title_font.render(
+        title_text = self.title_font.render(
             "Untitled bullet hell game", True, (255, 255, 255), (0, 0, 0)
         )
         title_rect = title_text.get_rect(center=(200, 100))
 
 
         start_box = pygame.Surface((200, 100))
-        color = inactive_text_color
+        color = self.inactive_text_color
         if self.buttons_index == 0:
-            color = active_text_color
-        start_text = small_font.render("Start", True, color, (0, 0, 0))
+            color = self.active_text_color
+        start_text = self.small_font.render("Start", True, color, (0, 0, 0))
         start_rect = start_text.get_rect(center=(100, 50))
 
 
         quit_box = pygame.Surface((200,100))
-        color = inactive_text_color
+        color = self.inactive_text_color
         if self.buttons_index == 1:
-            color = active_text_color
-        quit_text = small_font.render("Quit", True, color, (0, 0, 0))
+            color = self.active_text_color
+        quit_text = self.small_font.render("Quit", True, color, (0, 0, 0))
         quit_rect = quit_text.get_rect(center=(100,50))
 
         title_box.blit(title_text, title_rect)
