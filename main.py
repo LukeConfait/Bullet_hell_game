@@ -7,10 +7,12 @@ from game_states.Game import Game
 import config
 
 def main():
+    # Inititalise pygame 
     pygame.init()
     screen = pygame.display.set_mode((config.SCREEN_WIDTH, config.SCREEN_HEIGHT))
     clock = pygame.time.Clock()
 
+    # Create a state dictionary to store the game states needed for the game
     state_dict = {
         'main_menu': MainMenu(),
         'game': Game()
@@ -22,6 +24,7 @@ def main():
 
     while current_state.quit == False:
 
+        # change to the next state if the current state is finished
         if current_state.done == True:
             previous, new_state_name = current_state.name, current_state.next
             current_state.cleanup()
