@@ -9,7 +9,7 @@ from pygame.locals import (
 from entities.Player import Player
 from entities.Bullet import Bullet
 
-from game_states import State
+from game_states.State import State
 
 import config
 

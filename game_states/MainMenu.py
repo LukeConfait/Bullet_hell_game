@@ -5,7 +5,7 @@ from pygame.locals import (
     K_RETURN,
 )
 
-from game_states import State
+from game_states.State import State
 
 class MainMenu(State):
     """
