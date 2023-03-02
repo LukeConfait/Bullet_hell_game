@@ -5,7 +5,7 @@ import config
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self):
-        super(Bullet, self).__init__()
+        super().__init__()
         self.surf = pygame.Surface((10, 10))
         self.surf.fill((64, 224, 208))
         self.rect = self.surf.get_rect(

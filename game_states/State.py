@@ -8,3 +8,38 @@ class State():
         self.previous = 'None' # which state came before
         self.quit = False      # should the game quit
         self.fps = 60          # framerate
+
+# class Game(State):
+#     """
+#     Game Class
+#     """
+#     def __init__(self):
+#         super().__init__()
+#         self.next = 
+#         self.name = 
+#         self.fps = 60
+
+#     def cleanup(self) -> None:
+#         """
+#         Cleans up the state
+#         """    
+#     def startup(self):
+#         """
+#         Initialises the state
+#         """
+
+#     def get_event(self, event) -> None:
+#         """
+#         Event listener
+#         """
+
+#     def update(self, screen) -> None:
+#         """
+#         Non event loop logic
+#         """
+#         self.draw(screen)
+
+#     def draw(self, screen) -> None:
+#         """
+#         Graphics
+#         """

@@ -14,9 +14,11 @@ class Player(pygame.sprite.Sprite):
     Player entity class
     """
     def __init__(self):
-        super(Player, self).__init__()
+        super().__init__()
         self.surf = pygame.Surface((5, 5))
         self.surf.fill((0, 0, 0))
+
+        # Starting point of the player
         self.rect = self.surf.get_rect(
             center=(
                 (config.SCREEN_WIDTH - self.surf.get_width()) / 2,

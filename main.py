@@ -1,8 +1,9 @@
 import pygame
 import sys
 
-from game_states.MainMenu import MainMenu
-from game_states.Game import Game
+from game_states.mainmenu import MainMenu
+from game_states.game import Game
+from game_states.highscores import HighScores
 
 import config
 
@@ -15,7 +16,8 @@ def main():
     # Create a state dictionary to store the game states needed for the game
     state_dict = {
         'main_menu': MainMenu(),
-        'game': Game()
+        'game': Game(),
+        'high_scores': HighScores(),
     }
 
     # set up the initial game state 

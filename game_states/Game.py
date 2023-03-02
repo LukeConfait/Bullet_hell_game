@@ -6,10 +6,10 @@ from pygame.locals import (
     KEYDOWN,
 )
 
-from entities.Player import Player
-from entities.Bullet import Bullet
+from entities.player import Player
+from entities.bullet import Bullet
 
-from game_states.State import State
+from game_states.state import State
 
 import config
 
@@ -29,7 +29,7 @@ class Game(State):
         """
         print("Cleaning up game state")
     
-    def startup(self):
+    def startup(self) -> None:
         """
         Initialises the game state
         """
