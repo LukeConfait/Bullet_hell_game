@@ -34,6 +34,7 @@ def main():
             current_state.done = False
             current_state.startup()
             current_state.previous = str(previous)
+            
         
         while current_state.done == False:
             for event in pygame.event.get():
@@ -42,9 +43,18 @@ def main():
                     current_state.done = True
 
             current_state.get_event(event)
-            
-            clock.tick(current_state.fps)
             current_state.update(screen)
+            clock.tick(current_state.fps)
+
+            font = pygame.font.SysFont("Verdana", size=20)
+            fps_display = pygame.Surface((100,100))
+            fps = round(clock.get_fps(), 2)
+            fps_text = font.render(str(fps) + 'fps', True, (255, 255, 255))
+            fps_rect = fps_text.get_rect(center=(50,50))
+            fps_display.blit(fps_text, fps_rect)
+            screen.blit(fps_display, (0, 0))
+        
+
             pygame.display.update()
 
     # Cleanup the final game state if needed

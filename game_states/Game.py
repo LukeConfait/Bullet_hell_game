@@ -109,21 +109,10 @@ class Game(State):
         screen.fill((0,0,0))
         screen.blit(self.play_area, (30, 30))
 
-        score_title = pygame.Surface((390,100))
-        score_title.fill((255,255,255))
-        score_title_text = self.font.render("Score", True, (0,0,0))
-        score_title_rect = score_title_text.get_rect(center=(195,50))
+        
+        utils.draw_text_to_box(screen, (390,100), (255,255,255), "Score", self.font, (0,0,0), (860,30), center=(195,50))
 
-        score_title.blit(score_title_text, score_title_rect)
-        screen.blit(score_title,(860, 30))
-
-        score_board = pygame.Surface((390,100))
-        score_board.fill((255,255,255))
-        score_board_text = self.font.render(f"{self.score}", True, (0,0,0))
-        score_rect = score_board_text.get_rect(right=390,centery=50)
-
-        score_board.blit(score_board_text, score_rect)
-        screen.blit(score_board,(860, 140))
+        utils.draw_text_to_box(screen, (390,100), (255,255,255), f"{self.score}", self.font ,  (0,0,0), (860, 140), right=390, centery=50)
 
         for entity in self.all_sprites:
             screen.blit(entity.surf, entity.rect)
@@ -137,5 +126,8 @@ class Game(State):
 
             game_over_block.blit(game_over_text,game_over_rect)
             screen.blit(game_over_block,(230, 130))
+
+
+
 
 
