@@ -9,9 +9,9 @@ class State():
         self.quit = False      # should the game quit
         self.fps = 60          # framerate
 
-# class Game(State):
+# class NewState(State):
 #     """
-#     Game Class
+#
 #     """
 #     def __init__(self):
 #         super().__init__()

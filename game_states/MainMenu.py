@@ -15,7 +15,6 @@ class MainMenu(State):
     def __init__(self):
         super().__init__()
         self.name = 'main_menu'
-        self.fps = 15
     
     def cleanup(self) -> None:
         """

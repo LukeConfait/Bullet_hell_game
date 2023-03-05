@@ -12,6 +12,9 @@ from entities.bullet import Bullet
 from game_states.state import State
 
 import config
+import utils
+
+
 
 class Game(State):
     """
@@ -52,17 +55,15 @@ class Game(State):
         
         self.game_over = False
 
+        self.enter = False
+
     def get_event(self, event) -> None:
         """
         Event listener
         """
         if event.type == pygame.KEYDOWN:
             if event.key == K_ESCAPE:
-                print('escape pressed')
-                paused()
-
-            if event.key == K_RETURN and self.game_over == True:
-                self.done = True
+                utils.paused()
 
         if self.game_over == False:
 
@@ -74,11 +75,15 @@ class Game(State):
             pressed_keys = pygame.key.get_pressed()
             self.player.update(pressed_keys)
 
+        elif event.type == pygame.KEYDOWN:
+            if event.key == K_RETURN:
+                self.enter = True
+
     def update(self, screen) -> None:
         """
         Non event loop game logic
         """
-        if not self.game_over:
+        if self.game_over == False:
             self.bullets.update()
 
             # This feels kinda bad but im unsure how to implement it into the bullet update
@@ -86,8 +91,14 @@ class Game(State):
                 if bullet.kill_next_frame == True:
                     self.score += 15
         
-        if pygame.sprite.spritecollideany(self.player, self.bullets):
-            self.game_over = True
+            if pygame.sprite.spritecollideany(self.player, self.bullets):
+                self.game_over = True
+        
+        elif self.enter == True:
+            score = self.score
+            name  = 'Jon'
+            utils.save_score(score, name)
+            self.done = True
 
         self.draw(screen)
 
@@ -127,18 +138,4 @@ class Game(State):
             game_over_block.blit(game_over_text,game_over_rect)
             screen.blit(game_over_block,(230, 130))
 
-def paused() -> None :
-    """
-    Pauses the game
-    """
-    pause = True
 
-    while pause:
-        for event in pygame.event.get():
-            if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
-                    pygame.time.wait(200)
-                    pause = False
-            if event.type == pygame.QUIT:
-                pygame.quit()
-        pygame.display.update()

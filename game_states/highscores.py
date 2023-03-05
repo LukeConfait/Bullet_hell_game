@@ -12,7 +12,6 @@ class HighScores(State):
         super().__init__()
         self.next = 'main_menu'
         self.name = 'high_scores'
-        self.fps = 15
 
     def cleanup(self) -> None:
         """
