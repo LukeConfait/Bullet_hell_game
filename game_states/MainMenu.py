@@ -8,8 +8,6 @@ from pygame.locals import (
 
 from game_states.state import State
 
-import utils
-
 class MainMenu(State):
     """
     Main Menu Class
@@ -112,5 +110,3 @@ class MainMenu(State):
 
         quit_box.blit(quit_text,quit_rect)
         screen.blit(quit_box, (540, 800))
-
-
