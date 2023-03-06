@@ -52,7 +52,7 @@ def main():
             fps_text = font.render(str(fps) + 'fps', True, (255, 255, 255))
             fps_rect = fps_text.get_rect(center=(50,50))
             fps_display.blit(fps_text, fps_rect)
-            screen.blit(fps_display, (0, 0))
+            screen.blit(fps_display, (config.SCREEN_WIDTH-100, config.SCREEN_HEIGHT-100))
         
 
             pygame.display.update()
