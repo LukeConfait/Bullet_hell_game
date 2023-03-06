@@ -42,9 +42,17 @@ def main():
                     current_state.done = True
 
             current_state.get_event(event)
-            
-            clock.tick(current_state.fps)
             current_state.update(screen)
+
+            font = pygame.font.SysFont("Verdana", size=20)
+            fps_display = pygame.Surface((100,100))
+            fps = round(clock.get_fps(), 2)
+            fps_text = font.render(str(fps) + 'fps', True, (255, 255, 255))
+            fps_rect = fps_text.get_rect(center=(50,50))
+            fps_display.blit(fps_text, fps_rect)
+            screen.blit(fps_display, (config.SCREEN_WIDTH-100, config.SCREEN_HEIGHT-100))
+
+            clock.tick(current_state.fps)
             pygame.display.update()
 
     # Cleanup the final game state if needed

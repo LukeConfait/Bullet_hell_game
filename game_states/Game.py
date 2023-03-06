@@ -119,10 +119,10 @@ class Game(State):
 
         score_board = pygame.Surface((390,100))
         score_board.fill((255,255,255))
-        score_board_text = self.font.render(f"{self.score}", True, (0,0,0))
-        score_rect = score_board_text.get_rect(right=390,centery=50)
+        score_text = self.font.render(f"{self.score}", True, (0,0,0))
+        score_rect = score_text.get_rect(right=390,centery=50)
 
-        score_board.blit(score_board_text, score_rect)
+        score_board.blit(score_text, score_rect)
         screen.blit(score_board,(860, 140))
 
         for entity in self.all_sprites:
