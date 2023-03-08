@@ -24,7 +24,7 @@ def main():
     current_state = state_dict['main_menu'] 
     current_state.startup(screen)
 
-    while current_state.quit == False:
+    while current_state.quit == False:\
 
         # change to the next state if the current state is finished
         if current_state.done == True:
@@ -50,7 +50,7 @@ def main():
             fps_display = pygame.Surface((100,100))
             fps = round(clock.get_fps(), 2)
             fps_text = font.render(str(fps) + 'fps', True, (255, 255, 255))
-            fps_rect = fps_text.get_rect(center=(50,50))
+            fps_rect = fps_text.get_rect(center=(50, 50))
             fps_display.blit(fps_text, fps_rect)
             screen.blit(fps_display, (config.SCREEN_WIDTH-100, config.SCREEN_HEIGHT-100))
 

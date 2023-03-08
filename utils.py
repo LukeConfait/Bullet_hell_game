@@ -23,10 +23,12 @@ def paused() -> None :
                 pygame.quit()
         pygame.display.update()
 
-def save_score(score: int, name: str = 'AAA'):
+def save_score(score: int, name: str):
     """
     Saves scores to a json object, if no file exists it creates the file
     """
+
+    # This breaks if there is an empty scores.json file
 
     path = 'scores/scores.json'
 
