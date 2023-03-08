@@ -32,16 +32,12 @@ def main():
             current_state.cleanup()
             current_state = state_dict[new_state_name]
             current_state.done = False
-            current_state.startup()
+            current_state.startup(screen)
             current_state.previous = str(previous)
         
         while current_state.done == False:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    current_state.quit = True
-                    current_state.done = True
 
-            current_state.get_event(event)
+            current_state.get_event()
             current_state.update(screen)
 
             font = pygame.font.SysFont("Verdana", size=20)

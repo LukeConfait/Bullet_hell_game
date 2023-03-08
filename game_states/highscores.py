@@ -23,14 +23,18 @@ class HighScores(State):
         """
         self.title_font = pygame.font.SysFont("Verdana", size=32)
 
-    def get_event(self, event) -> None:
+    def get_event(self) -> None:
         """
         Event listener
         """
-        if event.type == pygame.KEYDOWN:
-            
-            if event.key == K_ESCAPE:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.quit = True
                 self.done = True
+            if event.type == pygame.KEYDOWN:
+            
+                if event.key == K_ESCAPE:
+                    self.done = True
             
 
     def update(self, screen) -> None:

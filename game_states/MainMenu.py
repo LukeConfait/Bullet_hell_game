@@ -35,29 +35,33 @@ class MainMenu(State):
         self.inactive_text_color = (255, 255, 255)
         self.active_text_color = (255, 0, 0)
         
-    def get_event(self, event) -> None:
+    def get_event(self) -> None:
         """
         Event listener
         """
-        if event.type == pygame.KEYDOWN:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.quit = True
+                self.done = True
+            if event.type == pygame.KEYDOWN:
 
-            if event.key == K_DOWN and self.buttons_index < 2:
-                self.buttons_index += 1
-                pygame.time.wait(150)
-            elif event.key == K_UP and self.buttons_index > 0:
-                self.buttons_index -= 1
-                pygame.time.wait(150)
+                if event.key == K_DOWN and self.buttons_index < 2:
+                    self.buttons_index += 1
+                    pygame.time.wait(150)
+                elif event.key == K_UP and self.buttons_index > 0:
+                    self.buttons_index -= 1
+                    pygame.time.wait(150)
 
-            if event.key == K_RETURN:
-                if self.buttons_index == 0:
-                    self.next = 'game'
-                    self.done = True
-                if self.buttons_index == 1:
-                    self.next = 'high_scores'
-                    self.done = True
-                if self.buttons_index == 2:
-                    self.done = True
-                    self.quit = True
+                if event.key == K_RETURN:
+                    if self.buttons_index == 0:
+                        self.next = 'game'
+                        self.done = True
+                    if self.buttons_index == 1:
+                        self.next = 'high_scores'
+                        self.done = True
+                    if self.buttons_index == 2:
+                        self.done = True
+                        self.quit = True
 
 
     def update(self, screen) -> None:
@@ -80,6 +84,7 @@ class MainMenu(State):
 
         title_box.blit(title_text, title_rect)
         screen.blit(title_box, (440, 100))
+
         # Start box 
         start_box = pygame.Surface((200, 100))
         color = self.inactive_text_color
@@ -87,9 +92,9 @@ class MainMenu(State):
             color = self.active_text_color
         start_text = self.small_font.render("Start", True, color, (0, 0, 0))
         start_rect = start_text.get_rect(center=(100, 50))
-
         start_box.blit(start_text, start_rect)
         screen.blit(start_box, (540, 400))
+
         # High score box
         high_score_box = pygame.Surface((200,100))
         color = self.inactive_text_color
@@ -97,9 +102,9 @@ class MainMenu(State):
             color = self.active_text_color
         high_score_text = self.small_font.render("High Scores", True, color, (0,0,0))
         high_score_rect = high_score_text.get_rect(center=(100,50))
-
         high_score_box.blit(high_score_text,high_score_rect)
         screen.blit(high_score_box, (540, 600))
+
         # Quit box 
         quit_box = pygame.Surface((200,100))
         color = self.inactive_text_color
@@ -107,6 +112,5 @@ class MainMenu(State):
             color = self.active_text_color
         quit_text = self.small_font.render("Quit", True, color, (0, 0, 0))
         quit_rect = quit_text.get_rect(center=(100,50))
-
         quit_box.blit(quit_text,quit_rect)
         screen.blit(quit_box, (540, 800))

@@ -32,6 +32,10 @@ class State():
 #         """
 #         Event listener
 #         """
+#       for event in pygame.event.get():
+#           if event.type == pygame.QUIT:
+#                self.quit = True
+#                self.done = True
 
 #     def update(self, screen) -> None:
 #         """
