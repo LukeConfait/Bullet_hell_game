@@ -70,41 +70,36 @@ class Game(State):
 
         self.score_board = pygame.Surface((390,100))
         
-    def get_event(self) -> None:
+    def get_event(self, event) -> None:
         """
         Event listener
         """
-        pressed_keys = pygame.key.get_pressed()
-        self.player.update(pressed_keys)
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.quit = True
-                self.done = True
+      
+        if event.type == pygame.KEYDOWN:
+            if event.key == K_ESCAPE:
+                utils.paused()
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == K_ESCAPE:
-                    utils.paused()
+        if self.game_over == False:
+            if event.type == self.ADDBULLET:
+                new_bullet = Bullet()
+                self.bullets.add(new_bullet)
+                self.all_sprites.add(new_bullet)
 
-            if self.game_over == False:
-                if event.type == self.ADDBULLET:
-                    new_bullet = Bullet()
-                    self.bullets.add(new_bullet)
-                    self.all_sprites.add(new_bullet)
-
-            elif event.type == pygame.KEYDOWN:
-                if event.key == K_RETURN:
-                    self.enter = True
-                elif event.key == K_BACKSPACE:
-                    self.name = self.name[:-1]
-                else: 
-                    self.name += event.unicode
+        elif event.type == pygame.KEYDOWN:
+            if event.key == K_RETURN:
+                self.enter = True
+            elif event.key == K_BACKSPACE:
+                self.name = self.name[:-1]
+            else: 
+                self.name += event.unicode
 
 
     def update(self, screen) -> None:
         """
         Non event loop game logic
         """
+        pressed_keys = pygame.key.get_pressed()
+        self.player.update(pressed_keys)
         if self.game_over == False:
 
             self.bullets.update()
@@ -143,7 +138,7 @@ class Game(State):
 
         if self.game_over == True:
             game_over_block = pygame.Surface((400,100))
-            
+
             # game_over_text = self.font.render(f"Haha you suck",True,(0,0,0))
             game_over_text = self.font.render(f"GAME OVER",True,(255,255,255))
             game_over_rect = game_over_text.get_rect(center=(200,50))

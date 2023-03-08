@@ -22,7 +22,7 @@ class MainMenu(State):
         """
         print("cleaning up menu state")
     
-    def startup(self) -> None:
+    def startup(self, screen) -> None:
         """ 
         Performs initialisation for the MainMenu
         """
@@ -35,33 +35,29 @@ class MainMenu(State):
         self.inactive_text_color = (255, 255, 255)
         self.active_text_color = (255, 0, 0)
         
-    def get_event(self) -> None:
+    def get_event(self, event) -> None:
         """
         Event listener
         """
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.quit = True
-                self.done = True
-            if event.type == pygame.KEYDOWN:
+        if event.type == pygame.KEYDOWN:
 
-                if event.key == K_DOWN and self.buttons_index < 2:
-                    self.buttons_index += 1
-                    pygame.time.wait(150)
-                elif event.key == K_UP and self.buttons_index > 0:
-                    self.buttons_index -= 1
-                    pygame.time.wait(150)
+            if event.key == K_DOWN and self.buttons_index < 2:
+                self.buttons_index += 1
+                pygame.time.wait(150)
+            elif event.key == K_UP and self.buttons_index > 0:
+                self.buttons_index -= 1
+                pygame.time.wait(150)
 
-                if event.key == K_RETURN:
-                    if self.buttons_index == 0:
-                        self.next = 'game'
-                        self.done = True
-                    if self.buttons_index == 1:
-                        self.next = 'high_scores'
-                        self.done = True
-                    if self.buttons_index == 2:
-                        self.done = True
-                        self.quit = True
+            if event.key == K_RETURN:
+                if self.buttons_index == 0:
+                    self.next = 'game'
+                    self.done = True
+                if self.buttons_index == 1:
+                    self.next = 'high_scores'
+                    self.done = True
+                if self.buttons_index == 2:
+                    self.done = True
+                    self.quit = True
 
 
     def update(self, screen) -> None:

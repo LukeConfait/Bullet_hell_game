@@ -17,24 +17,20 @@ class HighScores(State):
         """
         Cleans up the state
         """    
-    def startup(self) -> None:
+    def startup(self, screen) -> None:
         """
         Initialises the state
         """
         self.title_font = pygame.font.SysFont("Verdana", size=32)
 
-    def get_event(self) -> None:
+    def get_event(self, event) -> None:
         """
         Event listener
         """
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.quit = True
+        if event.type == pygame.KEYDOWN:
+        
+            if event.key == K_ESCAPE:
                 self.done = True
-            if event.type == pygame.KEYDOWN:
-            
-                if event.key == K_ESCAPE:
-                    self.done = True
             
 
     def update(self, screen) -> None:

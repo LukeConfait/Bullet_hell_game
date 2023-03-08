@@ -22,7 +22,7 @@ def main():
 
     # set up the initial game state 
     current_state = state_dict['main_menu'] 
-    current_state.startup()
+    current_state.startup(screen)
 
     while current_state.quit == False:
 
@@ -36,8 +36,14 @@ def main():
             current_state.previous = str(previous)
         
         while current_state.done == False:
-
-            current_state.get_event()
+            
+            # Run the event loop
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    current_state.quit = True
+                    current_state.done = True
+                current_state.get_event(event)
+            # Update the current state outside of the event loop
             current_state.update(screen)
 
             font = pygame.font.SysFont("Verdana", size=20)
