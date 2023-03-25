@@ -1,5 +1,7 @@
 import pygame
 import sys
+import os
+import json
 
 from game_states.mainmenu import MainMenu
 from game_states.game import Game
@@ -9,6 +11,10 @@ import bin.config as config
 
 
 def main():
+    if not os.path.exists("scores\scores.json"):
+        with open("scores\scores.json", "x") as file:
+            file.write(json.dumps(list()))
+
     # Inititalise pygame
     pygame.init()
     screen = pygame.display.set_mode((config.SCREEN_WIDTH, config.SCREEN_HEIGHT))

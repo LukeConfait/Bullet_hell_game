@@ -100,9 +100,9 @@ class Game(State):
         """
         Non event loop game logic
         """
-        pressed_keys = pygame.key.get_pressed()
-        self.player.update(pressed_keys)
         if self.game_over == False:
+            pressed_keys = pygame.key.get_pressed()
+            self.player.update(pressed_keys)
             self.bullets.update()
 
             # This feels kinda bad but im unsure how to implement it into the bullet update
