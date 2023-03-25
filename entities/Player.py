@@ -6,7 +6,7 @@ from pygame.locals import (
     K_RIGHT,
     K_LSHIFT,
 )
-import config
+import config.config as config
 
 
 class Player(pygame.sprite.Sprite):

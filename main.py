@@ -5,7 +5,7 @@ from game_states.mainmenu import MainMenu
 from game_states.game import Game
 from game_states.highscores import HighScores
 
-import config
+import config.config as config
 
 
 def main():
