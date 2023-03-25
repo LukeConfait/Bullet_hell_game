@@ -11,8 +11,8 @@ from entities.bullet import Bullet
 
 from game_states.state import State
 
-import config
-import utils
+import config.config as config
+import config.utils as utils
 
 
 class Game(State):
