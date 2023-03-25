@@ -1,6 +1,6 @@
 import pygame
 import random
-import config.config as config
+import bin.config as config
 
 
 class Bullet(pygame.sprite.Sprite):

@@ -5,7 +5,7 @@ from game_states.mainmenu import MainMenu
 from game_states.game import Game
 from game_states.highscores import HighScores
 
-import config.config as config
+import bin.config as config
 
 
 def main():
@@ -36,7 +36,6 @@ def main():
             current_state.previous = str(previous)
 
         while current_state.done == False:
-
             # Run the event loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

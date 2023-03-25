@@ -6,13 +6,14 @@ from pygame.locals import (
     K_RIGHT,
     K_LSHIFT,
 )
-import config.config as config
+import bin.config as config
 
 
 class Player(pygame.sprite.Sprite):
     """
     Player entity class
     """
+
     def __init__(self):
         super().__init__()
         self.surf = pygame.Surface((5, 5))
@@ -31,8 +32,8 @@ class Player(pygame.sprite.Sprite):
         Move the player while not allowing it to leave the gameplay area
         """
         speed = 6
-        if key[K_LSHIFT]: 
-            speed = 2 # Press Shift to slow down the player
+        if key[K_LSHIFT]:
+            speed = 2  # Press Shift to slow down the player
         if key[K_UP]:
             self.rect.move_ip(0, -speed)
         if key[K_DOWN]:

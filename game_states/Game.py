@@ -11,8 +11,8 @@ from entities.bullet import Bullet
 
 from game_states.state import State
 
-import config.config as config
-import config.utils as utils
+import bin.config as config
+import bin.utils as utils
 
 
 class Game(State):
@@ -102,7 +102,6 @@ class Game(State):
         pressed_keys = pygame.key.get_pressed()
         self.player.update(pressed_keys)
         if self.game_over == False:
-
             self.bullets.update()
 
             # This feels kinda bad but im unsure how to implement it into the bullet update
