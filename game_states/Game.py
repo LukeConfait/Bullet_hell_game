@@ -6,6 +6,7 @@ from pygame.locals import (
     K_BACKSPACE,
 )
 
+
 from entities.player import Player
 from entities.bullet import Bullet
 

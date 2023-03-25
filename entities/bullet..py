@@ -4,6 +4,10 @@ import bin.config as config
 
 
 class Bullet(pygame.sprite.Sprite):
+    """
+    Bullet class
+    """
+
     def __init__(self):
         super().__init__()
         self.surf = pygame.Surface((10, 10))
