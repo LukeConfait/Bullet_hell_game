@@ -2,7 +2,7 @@
 
 ## Managing Packages
 
-This project uses virtual env for package management
+This project uses virtualenv for package management. To state using virtual env, run:
 
     pip install virtualenv
 
@@ -14,7 +14,7 @@ To activate the virtual environment, run:
 
     source .direnv/bin/activate 
 
-on Unix or MacOS or 
+on Linux or MacOS or 
 
     .direnv\Scripts\activate
 
