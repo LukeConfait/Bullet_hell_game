@@ -2,7 +2,7 @@
 
 ## Managing Packages
 
-In this project, you can use a virtual env to manage python packages. To install virtualenv, run:
+This project uses virtual env for package management
 
     pip install virtualenv
 
